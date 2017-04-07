@@ -1,0 +1,27 @@
+<DOCTYPE! html>
+<html>
+    <head>
+       <title>Product Dashboard</title>
+    </head>
+    <body>
+        <div id="upper">
+            <h5>Name:</h5> <p><%= @product.name %></p>
+            <h5>Description:</h5> <p><%= @product.description %></p>
+            <h5>Price:</h5> <p><%= number_to_currency(@product.pricing) %></p>
+            <h5>Category:</h5> <p><%= @product.category.name %></p>
+            <a href="/products/<%= @product.id %>/edit" data-method='get'>Edit</a>
+            <a href="/back">Back</a>
+        </div>
+        <div id="lower">
+            <form action='/products/<%= @product.id %>/create' method='post'>
+                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                <p>Comment: <input type="text" name="form[comment]"></p>
+                <input type='submit' name='create' value='Create'/>
+            </form>
+            <% @product.comments.each do |comment| %>
+                <p><%= comment.comment %> - <%= comment.created_at.strftime '%m/%d/%Y' %></p>
+            <% end %>
+        </div>
+
+    </body>
+</html>

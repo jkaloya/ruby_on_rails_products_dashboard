@@ -1,0 +1,25 @@
+<DOCTYPE! html>
+<html>
+    <head>
+       <title>Product Dashboard</title>
+    </head>
+    <body>
+        <form action='/products/<%= @product.id %>' method='post'> <!--could also use [params[:id]]/@product.id is better -->
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+            <input type="hidden" name="_method" value="patch">
+            Category: <select name='form[category]'>
+                <option value="<%= @categories.find(1).id %>"><%= @categories.find(1).name %></option>
+                <option value="<%= @categories.find(2).id %>"><%= @categories.find(2).name %></option>
+                <option value="<%= @categories.find(3).id %>"><%= @categories.find(3).name %></option>
+                <option value="<%= @categories.find(4).id %>"><%= @categories.find(4).name %></option>
+                <option value="<%= @categories.find(5).id %>"><%= @categories.find(5).name %></option>
+            </select>
+            <p>Name: <input type="text" value="<%= @product.name %>" name="form[name]"></p>
+            <p>Description: <input type="text" value="<%= @product.description %>" name="form[description]"></p>
+            <p>Price: <input type="text" value="<%= @product.pricing %>" name="form[pricing]"></p>
+            <input type='submit' name='update' value='Update'/>
+        </form>
+        <a href="/products/<%= @product.id %>" data-method='get'>Show</a>
+        <a href="/back">Back</a>
+    </body>
+</html>

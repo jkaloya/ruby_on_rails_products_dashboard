@@ -1,0 +1,36 @@
+<DOCTYPE! html>
+<html>
+    <head>
+       <title>Product Dashboard</title>
+    </head>
+    <body>
+        <h3>Listing products</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @products.each do |product| %>
+                    <tr>
+                        <td><%= product.name %></td>
+                        <td><%= product.description %></td>
+                        <td><%= number_to_currency(product.pricing) %></td>
+                        <td><%= product.category.name %></td>
+                        <td><a href="/products/<%= product.id %>" data-method='get'>Show</a> <a href="/products/<%= product.id %>/edit" data-method='get'>Edit</a> <a href="/products/<%= product.id %>" data-method='delete'>Destroy</a></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+        <form action='/all_comments'>
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+            <input type='submit' name='all_comments' value='All comments'/>
+        </form>
+        <a href="/products/new">New Product</a>
+    </body>
+</html>

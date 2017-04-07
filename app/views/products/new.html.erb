@@ -1,0 +1,30 @@
+<DOCTYPE! html>
+<html>
+    <head>
+       <title>Product Dashboard</title>
+    </head>
+    <body>
+        <form action='/create' method='post'>
+            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+            Category: <select name='form[category]'>
+                <option value="<%= @categories.find(1).id %>"><%= @categories.find(1).name %></option>
+                <option value="<%= @categories.find(2).id %>"><%= @categories.find(2).name %></option>
+                <option value="<%= @categories.find(3).id %>"><%= @categories.find(3).name %></option>
+                <option value="<%= @categories.find(4).id %>"><%= @categories.find(4).name %></option>
+                <option value="<%= @categories.find(5).id %>"><%= @categories.find(5).name %></option>
+            </select>
+            <p>Name: <input type="text" name="form[name]"></p>
+            <p>Description: <input type="text" name="form[description]"></p>
+            <p>Price: <input type="text" name="form[pricing]"></p>
+            <input type='submit' name='create' value='Create'/>
+        </form>
+        <% if flash[:errors] %>
+            <% flash[:errors].each do |i| %>
+                <ul style="list-style: none;">
+                    <li><%= i %></li>
+                </ul>
+            <% end %>
+        <% end %>
+        <a href="/back">Back</a>
+    </body>
+</html>

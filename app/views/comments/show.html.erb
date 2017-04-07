@@ -1,0 +1,26 @@
+<DOCTYPE! html>
+<html>
+    <head>
+       <title>Product Dashboard</title>
+    </head>
+    <body>
+        <h3>All Comments</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Comments</th>
+                    <th>Products</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @comments.each do |comment| %>
+                    <tr>
+                        <td><%= comment.comment %></td>
+                        <td><%= comment.product.name %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+        <a href="/back">Back</a>
+    </body>
+</html>
